@@ -18,6 +18,19 @@ def find_possible_values(grid, row, col):
                               for c in range(start_col, start_col + 3)}
     return possible
 
+def solve_sudoku_sole_candidate(grid):
+    progress = True
+    while progress:
+        progress = False
+        for r in range(9):
+            for c in range(9):
+                if grid[r][c] == 0:
+                    possible = find_possible_values(grid, r, c)
+                    if len(possible) == 1:
+                        grid[r][c] = possible.pop()
+                        progress = True
+    return grid
+
 sudoku_grid = []
 print("Enter the Sudoku grid row by row (use 0 for empty cells):")
 for i in range(9):
